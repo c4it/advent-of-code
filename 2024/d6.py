@@ -97,8 +97,6 @@ def p2(test):
     r_, c_ = find_start(test)
     for r in range(rows):
         for c in range(cols):
-            if (r, c) == (6, 3):
-                print(1)
             test_copy = copy.deepcopy(test)
             if r_ != r or c_ != c:
                 test_copy[r][c] = "#"

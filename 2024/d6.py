@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
 import copy
-
+from aocd import data
 
 test = ""
-real = ""
 
 
 def find_start(test):
@@ -106,18 +105,22 @@ def p2(test):
     return obstacles
 
 
-# testl = []
-# for t in real.splitlines():
-#     testl.append(list(t))
+testl = []
+for t in data.splitlines():
+    testl.append(list(t))
 
-# # p1(testl)
-# # count = 0
-# # for a in testl:
-# #     for x in a:
-# #         if x == "X":
-# #             count += 1
-# # print(f"ans: {count}")
+p1(testl)
+count = 0
+for a in testl:
+    for x in a:
+        if x == "X":
+            count += 1
+print(f"p1 ans: {count}")
 
-# obst = p2(testl)
-# print("ans: ", obst)
-# print("ans: ", len(obst))
+
+testl = []
+for t in data.splitlines():
+    testl.append(list(t))
+
+obst = p2(testl)
+print(f"p2 ans: {len(obst)}")

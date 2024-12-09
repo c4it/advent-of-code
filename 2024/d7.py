@@ -16,13 +16,14 @@ ops2 = {
 
 
 def combo(digits, ans, ops):
-    combos = itertools.product(ops.keys(), repeat=len(digits) - 1)
-    for combo in combos:
+    for combo in itertools.product(ops.keys(), repeat=(len(digits) - 1)):
         i = 1
         total = digits[0]
         for op in combo:
             total = ops[op](total, digits[i])
             i += 1
+            if total > ans:
+                break
         if total == ans:
             return True
     return False

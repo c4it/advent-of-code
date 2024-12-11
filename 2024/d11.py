@@ -5,8 +5,8 @@ from functools import cache
 from aocd import data
 
 
-def p1(d: list, its):
-    for it in range(its):
+def p1(d: list[str], its: int):
+    for _ in range(its):
         i = 0
         while i < len(d):
             if d[i] == "0":
@@ -26,7 +26,7 @@ def p1(d: list, its):
 cache_stones = defaultdict(lambda: defaultdict(int))
 
 
-def p2(d, it):
+def p2(d: str, it: int):
     if it == 0:
         cache_stones[d][it] = 1
         return 1
@@ -49,7 +49,7 @@ def p2(d, it):
 
 
 @cache
-def p2_improved(d, it):
+def p2_improved(d: int, it: int):
     if it == 0:
         return 1
     if d == 0:

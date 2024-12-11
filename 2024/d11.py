@@ -23,6 +23,8 @@ def p1(d: list, its):
 
 
 cache_stones = defaultdict(lambda: defaultdict(int))
+
+
 def p2(d, it):
     if it == 0:
         cache_stones[d][it] = 1
@@ -55,3 +57,6 @@ stones = 0
 for d in data:
     stones += p2(d, 75)
 print(f"p2 ans: {stones}")
+
+# probably could have transformed to ints earlier to avoid the str(int(d[i][l:]))
+# also can make use of @cache from functools instead of dict

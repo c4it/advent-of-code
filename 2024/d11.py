@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from collections import defaultdict
+from functools import cache
 from aocd import data
 
 
@@ -47,12 +48,27 @@ def p2(d, it):
         return ans
 
 
+@cache
+def p2_improved(d, it):
+    if it == 0:
+        return 1
+    if d == 0:
+        return p2_improved(1, it - 1)
+    elif len(str(d)) % 2 == 0:
+        str_d = str(d)
+        l = len(str_d) // 2
+        return p2_improved(int(str_d[0:l]), it - 1) + p2_improved(
+            int(str_d[l:]), it - 1
+        )
+    else:
+        return p2_improved(d * 2024, it - 1)
+
+
 data2 = data.split()
 p1(data2, 25)
 print(f"p1 ans: {len(data2)}")
 
 data = data.split()
-i = 0
 stones = 0
 for d in data:
     stones += p2(d, 75)
@@ -60,3 +76,8 @@ print(f"p2 ans: {stones}")
 
 # probably could have transformed to ints earlier to avoid the str(int(d[i][l:]))
 # also can make use of @cache from functools instead of dict
+stones = 0
+data = [int(x) for x in data]
+for d in data:
+    stones += p2_improved(d, 75)
+print(f"p2 improved ans: {stones}")
